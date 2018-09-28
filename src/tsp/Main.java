@@ -54,20 +54,18 @@ public class Main {
 	 * 
 	 * **command**: java Main [options] datafile
 	 * 
-	 * **Options**:
-	 *  - -help : prints this parameter description
-	 *  - -t (int) :maximum number of seconds given to the algorithm
-	 *  - -g : graphical output of the solution
-	 *  - -v : trace level (print the solution at the end if true)
+	 * **Options**: - -help : prints this parameter description - -t (int)
+	 * :maximum number of seconds given to the algorithm - -g : graphical output
+	 * of the solution - -v : trace level (print the solution at the end if
+	 * true)
 	 * 
-	 * **Program output**: fileName;routeLength;time;e 
+	 * **Program output**: fileName;routeLength;time;e
 	 * 
-	 * e is an error code:
-	 *  - e = 0 -> the solution is feasible and returned within the time limit
-	 *  - e = 1 -> unfeasible solution
-	 *  - e = 2 -> overtime.
+	 * e is an error code: - e = 0 -> the solution is feasible and returned
+	 * within the time limit - e = 1 -> unfeasible solution - e = 2 -> overtime.
 	 * 
-	 * @param args program parameters.
+	 * @param args
+	 *            program parameters.
 	 */
 	public static void main(String[] args) {
 		String filename = null;
@@ -119,12 +117,12 @@ public class Main {
 
 		// Create and solve problem
 		try {
-			
+
 			// Read data
 			Instance data = new Instance(filename, typeInstance);
-			
+
 			// Create a new problem
-			TSPSolver tsp = new TSPSolver(data,max_time);
+			TSPSolver tsp = new TSPSolver(data, max_time);
 
 			// Solve the problem
 			long t = System.currentTimeMillis();
@@ -144,14 +142,12 @@ public class Main {
 					System.err.println("Error: Time limit exeeced !!!");
 				}
 			}
-			
-			if(graphical)
-			{
+
+			if (graphical) {
 				TSPGUI gui = new TSPGUI(tsp.getSolution());
 			}
-			
-			System.out.println(filename + ";"
-					+ tsp.getSolution().getObjectiveValue() + ";" + t + ";" + e);
+
+			System.out.println(filename + ";" + tsp.getSolution().getObjectiveValue() + ";" + t + ";" + e);
 
 			// If verbose, print the solution
 			if (verbose) {
@@ -160,7 +156,6 @@ public class Main {
 				if (e == 1)
 					System.err.println("Error: There is an error in the solution: " + tsp.getSolution().getError());
 			}
-
 
 		} catch (IOException e) {
 			System.err.println("Error: An error has been met when reading the input file: " + e.getMessage());
